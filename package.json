@@ -2,7 +2,9 @@
   "name": "actionitem11",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "ActionItem11": "npx playwright test /src/test/ActionItem11/ --headed --workers=1 --project=chromium --reporter=html", 
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
