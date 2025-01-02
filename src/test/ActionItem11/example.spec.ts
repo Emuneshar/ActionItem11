@@ -6,3 +6,6 @@ let page: Page
 test.beforeAll(async ({browser}) => {
     page = await browser.newPage()
 })
+
+
+// Beginning of test case
