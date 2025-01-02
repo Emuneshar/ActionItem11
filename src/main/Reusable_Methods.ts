@@ -41,3 +41,16 @@ export async function scrollByPixel(page: Page, pixelX: number, pixelY: number, 
     console.log("Scrolling to "+ elementName)
     await page.mouse.wheel(pixelX, pixelY )
 }
+
+// New title verification function 
+export async function verifyTitle(page: Page, titleForVerification: string){
+    let currentTitle = await page.title()
+    if(currentTitle === titleForVerification){
+        console.log("Site Navigated succesfully, title is a match")
+        return true;
+      }
+      else{
+        console.log("Wrong site was navigated to")
+        return false;
+      }
+}
