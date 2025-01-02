@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "ActionItem11": "npx playwright test /src/test/ActionItem11/ --headed --workers=1 --project=chromium --reporter=html" 
+    "ActionItem11": "npx playwright test /src/test/ActionItem11/ --headed --workers=1 --project=chrome --reporter=html" 
   },
   "keywords": [],
   "author": "",
