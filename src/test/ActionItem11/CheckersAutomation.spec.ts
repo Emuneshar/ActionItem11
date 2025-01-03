@@ -1,5 +1,5 @@
 import {test, expect, Page} from "@playwright/test"
-import { click, verifyTitle } from "../../main/Reusable_Methods"
+import { click, MovePiece, verifiedRestart, verifyTitle } from "../../main/Reusable_Methods"
 
 let page: Page
 
@@ -10,26 +10,29 @@ test.beforeAll(async ({browser}) => {
 
 const url = "https://www.gamesforthebrain.com/game/checkers/"
 const titleForVerification = "Checkers - Games for the Brain"
-const xpathFirstPiece = "//*[@name = 'space62']"
-const xpathFirstPieceTo = "//*[@name = 'space53']"
-const xpathSecondPiece = "//*[@name = 'space42']"
-const xpathSecondPieceTo = "//*[@name = 'space33']"
-const xpathThirdPiece = "//*[@name = 'space51']"
-const xpathThirdPieceTo = "//*[@name = 'space33']"
+const startMessage = "Select an orange piece to move."
 
+let xpathPieces = Array<string>()
+xpathPieces.push("//*[@name = 'space62']")
+xpathPieces.push("//*[@name = 'space42']")
+xpathPieces.push("//*[@name = 'space51']")
+xpathPieces.push("//*[@name = 'space31']")
+xpathPieces.push("//*[@name = 'space60']")
+
+let xpathPiecesTo = Array<string>()
+xpathPiecesTo.push("//*[@name = 'space53']")
+xpathPiecesTo.push("//*[@name = 'space33']")
+xpathPiecesTo.push("//*[@name = 'space33']")
+xpathPiecesTo.push("//*[@name = 'space42']")
+xpathPiecesTo.push("//*[@name = 'space51']")
+
+const xpathRestart = "//*[@href = './']"
 // Beginning of test case
 test("Checkers Challenge", async() => {
   await page.goto(url)
-  await verifyTitle(page, titleForVerification)
-  await click(page, xpathFirstPiece, "First Piece")
-  await click(page, xpathFirstPieceTo, "First piece went successfully")
+  for(let i = 0; i < xpathPieces.length; i++){
+    await MovePiece(page, xpathPieces[i], xpathPiecesTo[i])
+  }
+  await verifiedRestart(page, xpathRestart, startMessage)
   await page.waitForTimeout(3000)
-  await click(page, xpathSecondPiece, "Second Piece highlighed")
-  await page.waitForTimeout(3000)
-  await click(page, xpathSecondPieceTo, "Second Piece Moved successfully")
-  await page.waitForTimeout(3000)
-  await click(page, xpathThirdPiece, "Third Piece Highlighted")
-  await page.waitForTimeout(3000)
-  await click(page, xpathThirdPieceTo, "Third piece move successsful and enemy piece captured")
-
 })

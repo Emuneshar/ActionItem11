@@ -54,3 +54,37 @@ export async function verifyTitle(page: Page, titleForVerification: string){
         return false;
       }
 }
+
+// New funciton to make a move
+export async function MovePiece(page: Page, xpathOrigin : string, xpathDestination : string){
+    const messageOne = "Select an orange piece to move."
+    const messageTwo = "Make a move."
+    const xpathMessage = "//*[@id = 'message']"
+    let messageText = await captureText(page, xpathMessage, "Captured text for verification")
+
+    if(messageText === messageOne || messageText === messageTwo){
+        console.log("Move can be made")
+        await click(page, xpathOrigin, "Clicked on Piece")
+        await page.waitForTimeout(3000)
+        await click(page, xpathDestination, "Piece Moved Successfully")
+        await page.waitForTimeout(3000)
+    }
+    else{
+        console.log("Sorry couldn't make the move")
+    }
+    
+}
+
+// New function verify checkers restart
+export async function verifiedRestart(page: Page, xpathRestart : string, textToVerify : string){
+    const xpathMessage = "//*[@id = 'message']"
+    await click(page, xpathRestart, "Game Restarted")
+    await page.waitForTimeout(3000)
+    let messageText = await captureText(page, xpathMessage, "Captured text for verification")
+    if (messageText === textToVerify){
+        console.log("Restart Verified")
+    }
+    else{
+        console.log("Restart could not be verified")
+    }
+}
