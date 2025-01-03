@@ -14,6 +14,8 @@ const xpathFirstPiece = "//*[@name = 'space62']"
 const xpathFirstPieceTo = "//*[@name = 'space53']"
 const xpathSecondPiece = "//*[@name = 'space42']"
 const xpathSecondPieceTo = "//*[@name = 'space33']"
+const xpathThirdPiece = "//*[@name = 'space51']"
+const xpathThirdPieceTo = "//*[@name = 'space33']"
 
 // Beginning of test case
 test("Checkers Challenge", async() => {
@@ -26,5 +28,8 @@ test("Checkers Challenge", async() => {
   await page.waitForTimeout(3000)
   await click(page, xpathSecondPieceTo, "Second Piece Moved successfully")
   await page.waitForTimeout(3000)
+  await click(page, xpathThirdPiece, "Third Piece Highlighted")
+  await page.waitForTimeout(3000)
+  await click(page, xpathThirdPieceTo, "Third piece move successsful and enemy piece captured")
 
 })
