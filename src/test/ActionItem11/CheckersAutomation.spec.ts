@@ -47,7 +47,7 @@ test("Checkers Challenge", async() => {
 Thought Process:
 First I needed to create a new project, so I created a new folder on my local computer and opened it in VS Code. 
 Then I opened the command palette for VS code and selected to install playwright in the folder for the new project. 
-This created all of the new filed and environments needed to write my test. Next, I changed the test directory in the config file and 
+This created all of the new files and environments needed to write my test. Next, I changed the test directory in the config file and 
 added the timeout of 5000000. After that, I started by manually testing the site and inspecting the checkerboard to see 
 what type of elements were available. After noting that each board space had its own name element 
 I played the game, capturing an enemy piece on the third move. Noting that the movements and the way to interact with the game were repetitive, 
