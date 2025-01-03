@@ -64,3 +64,5 @@ It first verifies that it is our turn to make a move by making sure that the scr
  If the move can't be made we print that out to the screen.
 The last reusable function that I wrote clicks on the restart with a provided Xpath as a parameter, 
 then verifies that it was restarted by checking for the text "Select an orange piece to move" which is only displayed when the game is reset. 
+
+*/
