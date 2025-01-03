@@ -65,9 +65,9 @@ export async function MovePiece(page: Page, xpathOrigin : string, xpathDestinati
     if(messageText === messageOne || messageText === messageTwo){
         console.log("Move can be made")
         await click(page, xpathOrigin, "Clicked on Piece")
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(2000)
         await click(page, xpathDestination, "Piece Moved Successfully")
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(2000)
     }
     else{
         console.log("Sorry couldn't make the move")
@@ -77,14 +77,15 @@ export async function MovePiece(page: Page, xpathOrigin : string, xpathDestinati
 
 // New function verify checkers restart
 export async function verifiedRestart(page: Page, xpathRestart : string, textToVerify : string){
-    const xpathMessage = "//*[@id = 'message']"
-    await click(page, xpathRestart, "Game Restarted")
-    await page.waitForTimeout(3000)
-    let messageText = await captureText(page, xpathMessage, "Captured text for verification")
-    if (messageText === textToVerify){
-        console.log("Restart Verified")
+    const xpathMessage = "//*[@id = 'message']" // xpath for element that contains the message
+    await click(page, xpathRestart, "Game Restarted") // click on the restart button
+    await page.waitForTimeout(3000) // gives time for the site to relaod if neccesary
+    let messageText = await captureText(page, xpathMessage, "Captured text for verification") // captures text for us to verify if the game restarted
+
+    if (messageText === textToVerify){ // checks if the message is the one that is displayed when the gane is new
+        console.log("Restart Verified") // Prints out that the restart is verified
     }
     else{
-        console.log("Restart could not be verified")
+        console.log("Restart could not be verified") // otherwise prints out that the restart could not be verified
     }
 }
