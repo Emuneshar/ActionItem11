@@ -44,33 +44,31 @@ export async function scrollByPixel(page: Page, pixelX: number, pixelY: number, 
 
 // New title verification function 
 export async function verifyTitle(page: Page, titleForVerification: string){
-    let currentTitle = await page.title()
-    if(currentTitle === titleForVerification){
-        console.log("Site Navigated succesfully, title is a match")
-        return true;
+    let currentTitle = await page.title() // gets the title of the current page for verification
+    if(currentTitle === titleForVerification){ // checks if title is a march for the page we are supposed to be on
+        console.log("Site Navigated succesfully, title is a match") // if the title matches we print out that it is a match
       }
       else{
-        console.log("Wrong site was navigated to")
-        return false;
+        console.log("Wrong site was navigated to") // otherwise we print out that it was not a match
       }
 }
 
 // New funciton to make a move
 export async function MovePiece(page: Page, xpathOrigin : string, xpathDestination : string){
-    const messageOne = "Select an orange piece to move."
-    const messageTwo = "Make a move."
-    const xpathMessage = "//*[@id = 'message']"
-    let messageText = await captureText(page, xpathMessage, "Captured text for verification")
+    const messageOne = "Select an orange piece to move." // Mesage to check if we can make the first move
+    const messageTwo = "Make a move." // Message to check if we can make a move
+    const xpathMessage = "//*[@id = 'message']" // xpath to element that stores message
+    let messageText = await captureText(page, xpathMessage, "Captured text for verification") // text used for verificaiton
 
-    if(messageText === messageOne || messageText === messageTwo){
-        console.log("Move can be made")
-        await click(page, xpathOrigin, "Clicked on Piece")
-        await page.waitForTimeout(2000)
-        await click(page, xpathDestination, "Piece Moved Successfully")
-        await page.waitForTimeout(2000)
+    if(messageText === messageOne || messageText === messageTwo){ // checks if this is the first move or if it is our turn
+        console.log("Move can be made") // Prints out that it is our turn and a move can be made
+        await click(page, xpathOrigin, "Piece") // Lets the user know a piece was clicked on
+        await page.waitForTimeout(2000) // added wait time due to moving too fast
+        await click(page, xpathDestination, "Piece Moved Successfully") // makes the move and prints out that it was made
+        await page.waitForTimeout(2000) // added time to view the piece moving
     }
     else{
-        console.log("Sorry couldn't make the move")
+        console.log("Sorry couldn't make the move") // prints out that the move couldn't be made
     }
     
 }
