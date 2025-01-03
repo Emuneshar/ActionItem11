@@ -81,7 +81,7 @@ export async function verifiedRestart(page: Page, xpathRestart : string, textToV
     const xpathMessage = "//*[@id = 'message']" // xpath for element that contains the message
     await click(page, xpathRestart, "Game Restarted") // click on the restart button
     await page.waitForTimeout(3000) // gives time for the site to relaod if neccesary
-    let messageText = await captureText(page, xpathMessage, "Captured text for verification") // captures text for us to verify if the game restarted
+    let messageText = await captureText(page, xpathMessage, "for verification") // captures text for us to verify if the game restarted
 
     if (messageText === textToVerify){ // checks if the message is the one that is displayed when the gane is new
         console.log("Restart Verified") // Prints out that the restart is verified
