@@ -54,7 +54,7 @@ export async function verifyTitle(page: Page, titleForVerification: string){
 }
 
 // New funciton to make a move
-export async function MovePiece(page: Page, xpathOrigin : string, xpathDestination : string){
+export async function MovePiece(page: Page, xpathOrigin : string, xpathDestination : string, index : number){
     const messageOne = "Select an orange piece to move." // Mesage to check if we can make the first move
     const messageTwo = "Make a move." // Message to check if we can make a move
     const xpathMessage = "//*[@id = 'message']" // xpath to element that stores message
@@ -64,7 +64,10 @@ export async function MovePiece(page: Page, xpathOrigin : string, xpathDestinati
         console.log("Move can be made") // Prints out that it is our turn and a move can be made
         await click(page, xpathOrigin, "Piece") // Lets the user know a piece was clicked on
         await page.waitForTimeout(2000) // added wait time due to moving too fast
-        await click(page, xpathDestination, "Piece Moved Successfully") // makes the move and prints out that it was made
+        await click(page, xpathDestination, "Piece Moved Successfully")// makes the move and prints out that it was made
+        if ((index+1) == 3 ){
+            console.log("Blue Piece was taken")
+        }
         await page.waitForTimeout(2000) // added time to view the piece moving
     }
     else{
